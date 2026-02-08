@@ -1,8 +1,16 @@
 # 🧾 Roomie Receipts
 
-> **A stress-free bill-splitting tool for college roommates.** > "Money talk doesn't have to be awkward!"
+> **A stress-free bill-splitting tool for college roommates.**
+> "Money talk doesn't have to be awkward!"
 
 **Roomie Receipts** is a web application designed to help roommates or housemates split communal expenses (groceries, furniture, trips) easily and fairly. With a retro cartoon-style UI, it makes the boring task of settling bills fun and automated.
+
+---
+
+## 🌐 Live Demo
+
+👉 **[Try Roomie Receipts Here!](https://roomie-receipts.pages.dev)**
+*(여기에 배포한 실제 링크를 넣어주세요!)*
 
 ---
 
@@ -26,3 +34,17 @@
 - **Backend / Database**: Supabase
 - **Libraries**:
   - `react-router-dom` (for navigation)
+
+---
+
+## 📸 Screenshots
+
+| Landing Page | Create Receipt |
+|:---:|:---:|
+| <img src="public/screenshot1.png" width="400" /> | <img src="public/screenshot2.png" width="400" /> |
+
+| Split & Detail | Saved Result |
+|:---:|:---:|
+| <img src="public/screenshot3.png" width="400" /> | <img src="public/screenshot4.png" width="400" /> |
+
+*(Make sure to add your actual screenshots to the `public` folder or update the paths!)*
