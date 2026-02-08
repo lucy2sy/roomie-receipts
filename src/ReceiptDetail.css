@@ -1,0 +1,337 @@
+/* ReceiptDetail.css */
+
+/* ... (위쪽 기본 설정들은 그대로 유지) ... */
+.detail-container {
+  background-color: #AAC4F5;
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Bungee Hairline', sans-serif;
+  box-sizing: border-box;
+}
+
+.receipt-card {
+  background-color: #FFF8DE;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 40px;
+  padding: 40px;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.receipt-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.receipt-title {
+  font-family: 'Bungee Inline', cursive;
+  font-size: 2.5rem;
+  color: #8ca9ff;
+  -webkit-text-stroke: 0 !important;
+  margin: 0;
+}
+.receipt-date {
+  font-size: 1rem;
+  color: #666;
+  font-weight: bold;
+}
+
+/* 📷 BIG SCAN AREA (스타일 복구!) */
+.scan-area {
+  background: white;
+  border: 3px dashed #8ca9ff; /* 두꺼운 점선 */
+  border-radius: 20px;
+  padding: 30px; /* 넉넉한 패딩 */
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+.scan-area:hover {
+  background-color: #F3E5F5;
+  transform: scale(1.02);
+}
+.scan-text {
+  color: #8ca9ff;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+/* OR Separator */
+.separator-text {
+  text-align: center;
+  font-weight: bold;
+  color: #999;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+/* ... (아래쪽 입력창, 탭, 리스트 스타일은 아까와 동일) ... */
+.amount-section { margin-bottom: 10px; }
+.input-label {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  display: block;
+  background: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 5px 15px;
+  width: fit-content;
+}
+.big-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.split-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 30px;
+  background: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.tab-btn.active {
+  background-color: #AAC4F5;
+  color: white;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+}
+
+.split-list-container {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+.split-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.split-row:last-child { border-bottom: none; }
+.header-row { background-color: #FAFAFA; font-weight: bold; }
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+}
+.custom-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.custom-checkbox.checked { background-color: #4A90E2; }
+.row-name { font-size: 1.2rem; font-weight: bold; }
+
+.row-right { display: flex; align-items: center; }
+.split-result { font-size: 1.2rem; color: #666; }
+
+.manual-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0 5px;
+}
+.currency-symbol { padding: 0 5px; color: #888; }
+.small-input {
+  width: 60px;
+  border: none;
+  background: transparent;
+  padding: 8px 5px;
+  font-size: 1.1rem;
+  text-align: right;
+  outline: none;
+  font-family: inherit;
+}
+.clear-x-btn {
+  background: #AAC4F5;
+  border: none;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn {
+  background: #AAC4F5;
+  border: none;
+  border-radius: 30px;
+  padding: 15px;
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: 'Bungee Inline', cursive;
+  -webkit-text-stroke: 0 !important;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.result-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.success-icon {
+  font-family: 'Bungee Inline', cursive;
+  font-size: 2.5rem;
+  color: #4CAF50; /* 성공 초록색 */
+  -webkit-text-stroke: 0 !important;
+  margin-bottom: 10px;
+}
+
+.total-display {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #FFF2C6;
+  padding: 10px 30px;
+  border-radius: 30px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.result-list {
+  width: 100%;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid #eee;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.05);
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #ddd;
+  font-size: 1.2rem;
+}
+.result-row:last-child {
+  border-bottom: none;
+}
+.result-name { font-weight: bold; }
+.result-amount { color: #9370DB; font-weight: bold; }
+
+/* 공유 버튼 */
+.share-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+.share-section p {
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.copy-link-btn {
+  background: #4A90E2;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+}
+.copy-link-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+}
+
+/* 히스토리 & 수정 버튼 */
+.history-btn {
+  background: white;
+  border: 2px solid black;
+  border-radius: 30px;
+  padding: 12px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.edit-again-btn {
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  color: #888;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.copy-msg-btn {
+  background: #9370DB; /* 보라색 (친절한 느낌) */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+  transition: transform 0.1s;
+}
+
+.copy-msg-btn:hover {
+  background: #8A2BE2;
+  transform: translate(1px, 1px);
+}
+
+.copy-msg-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}

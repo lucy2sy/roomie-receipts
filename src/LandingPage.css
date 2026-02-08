@@ -1,0 +1,265 @@
+/* LandingPage.css */
+:root {
+  --bg-cream: #FFF2C6;
+  --bg-blue: #AAC4F5;
+  --btn-purple: #8CA9FF;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-blue);
+  /* 가로 스크롤바를 없애고 싶으면 필수! */
+  overflow-x: hidden; 
+}
+
+/* 1. 전체 래퍼 */
+.main-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 중앙 정렬 */
+  background-color: var(--bg-blue);
+  padding-bottom: 50px;
+}
+
+/* 2. 집 컨테이너 */
+.house-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  position: relative;
+}
+
+/* ✨ 흰색 점 (지붕 위) */
+.roof-window {
+  position: absolute;
+  /* 지붕 높이에 따라 위치가 조금 바뀔 수 있어서 %로 조정 */
+  top: 20px; 
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  z-index: 20;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  
+  /* 완벽한 중앙 배치 */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 🏠 지붕 (반응형 적용!) */
+.house-roof {
+  /* 화면의 95%만큼 차지하되, 최대 1200px까지만 커져라! */
+  width: 95vw; 
+  max-width: 1200px;
+  
+  height: 200px; 
+  background-color: var(--bg-cream);
+  
+  /* 삼각형 모양 */
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  
+  z-index: 2;
+  margin-bottom: 10px; /* 틈새 유지 */
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 🏠 몸통 (반응형 적용!) */
+.house-body {
+  /* 지붕(95vw)보다 좁게 = 85vw (처마 효과 자동 유지) */
+  width: 85vw;
+  max-width: 1200px;
+  
+  min-height: 800px;
+  background-color: var(--bg-cream);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 50px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 📢 로고 (반응형 크기) */
+.logo-img {
+  /* 몸통 너비의 절반 정도 차지하게 */
+  width: 50%; 
+  max-width: 750px; 
+  
+  margin-top: -110px; /* 틈새 덮기 */
+  margin-bottom: 20px;
+  z-index: 15;
+}
+
+/* 종이 섹션 (반응형) */
+.paper-wrapper {
+  position: relative;
+  /* 화면이 작을 땐 꽉 차게, 클 땐 고정 크기 */
+  width: 90%;
+  max-width: 900px;
+  
+  /* 높이는 내용물에 따라 늘어나도록 auto 추천하지만, 디자인 유지 위해 고정 */
+  height: 480px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.paper-img {
+  width: 100%;
+  /* 종이 비율 유지 */
+  height: 100%; 
+  object-fit: contain; 
+  position: absolute;
+  z-index: 1;
+  filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.15));
+}
+
+.paper-text {
+  position: relative;
+  z-index: 2;
+  padding-top: 5%;
+  font-family: 'Bungee Hairline', sans-serif;
+  font-weight: bold;
+  font-size: 1.7rem; /* 모바일에서 너무 크면 미디어 쿼리로 조절 */
+  line-height: 1.5;
+  text-align: justify;
+  width: 50%;
+  color: #888;
+  -webkit-text-stroke: 0.8px black;
+  transform: rotate(-8deg);
+}
+
+/* 별 스타일 */
+.star {
+  position: absolute;
+  z-index: 3;
+}
+
+.star-left {
+  width: 25%; /* 반응형 크기 */
+  max-width: 180px;
+  left: -10%; /* %로 위치 잡기 */
+  top: 40px;
+  transform: rotate(-15deg);
+}
+
+.star-right {
+  width: 28%; /* 반응형 크기 */
+  max-width: 200px;
+  right: -12%;
+  bottom: 20px;
+  transform: rotate(10deg);
+}
+
+/* 버튼 */
+.btn-container {
+  margin-top: 120px;
+  z-index: 10;
+}
+
+.how-to-btn {
+  font-family: 'Bungee Inline', cursive;
+  background: var(--btn-purple);
+  -webkit-text-stroke: 0;
+  border: 2px solid #fff8de;
+  color: #fff8de;
+  padding: 15px 40px;
+  font-size: 2.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+  
+  /* 버튼 텍스트 줄바꿈 방지 */
+  white-space: nowrap; 
+}
+
+.start-btn {
+  font-family: 'Bungee Inline', cursive;
+  background: var(--btn-purple);
+  color: #fff8de;
+  border: 2px solid #fff8de;
+  padding: 25px 70px;
+  font-size: 3rem;
+  border-radius: 80px;
+  cursor: pointer;
+  -webkit-text-stroke: 0;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+/* 설명 섹션 */
+.content-section {
+  width: 85%;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-bottom: 80px;
+}
+
+.info-block {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.info-block.reverse { flex-direction: row-reverse; }
+
+.text-box { flex: 1; }
+.img-placeholder { flex: 1; height: 220px; background: #ddd; border-radius: 10px; }
+
+.text-box h1 {
+  font-family: 'Bungee Hairline', sans-serif; 
+  font-weight: bold;
+  color: #9370DB; /* 보라색 글씨 */
+  
+  /* 👇 하이라이터 효과 추가! 👇 */
+  background-color: #fff8de; /* 요청하신 색상 */
+  display: inline-block;     /* 글자 길이만큼만 배경 입히기 */
+  padding: 0 5px;            /* 양옆에 살짝 여백 주기 */
+  /* transform: rotate(-1deg); */ /* (선택) 살짝 삐뚤게 하면 더 귀여워요! */
+
+  -webkit-text-stroke: 1px black;
+  font-size: 1.8rem;
+  margin: 0 0 10px 0;
+}
+
+.text-box h2 {
+  font-family: 'Bungee Hairline', sans-serif; 
+  font-weight: bold;
+  color: #9370DB;
+  -webkit-text-stroke: 1px black;
+  font-size: 1.3rem;
+  margin: 0 0 15px 0;
+}
+
+.footer-section {
+  padding: 80px 0;
+  text-align: center;
+  width: 100%;
+  margin-top: 50px;
+}
+
+/* 📱 모바일 화면 대응 (폰에서 볼 때) */
+@media (max-width: 768px) {
+  .house-roof { height: 100px; }
+  .logo-img { width: 70%; margin-top: -80px; }
+  .paper-wrapper { height: 350px; }
+  .paper-text { font-size: 0.9rem; line-height: 1.6; }
+  .star-left { left: -5%; }
+  .star-right { right: -5%; }
+  .info-block { flex-direction: column !important; text-align: center; }
+  .how-to-btn { font-size: 1.5rem; padding: 10px 30px; }
+  .start-btn { font-size: 2rem; padding: 15px 50px; }
+}

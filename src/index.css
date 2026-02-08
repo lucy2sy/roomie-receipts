@@ -1,0 +1,22 @@
+/* 1. 폰트 가져오기 */
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Bungee+Inline&display=swap');
+
+/* 2. 전체 기본 설정 (핵심!) */
+body {
+  margin: 0;
+  padding: 0;
+  
+  /* 모든 글꼴을 Bungee Hairline으로! */
+  font-family: 'Bungee Hairline', sans-serif;
+  
+  /* 모든 글자에 검은색 1px 테두리! */
+  -webkit-text-stroke: 1px black;
+  
+}
+
+/* 3. 버튼이나 입력창도 폰트 상속받게 강제하기 */
+button, input, select, textarea {
+  font-family: inherit;
+  -webkit-text-stroke: 1px black;
+  font-weight: bold;
+}

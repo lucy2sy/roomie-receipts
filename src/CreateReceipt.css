@@ -1,0 +1,216 @@
+/* CreateReceipt.css */
+
+/* 1. 전체 배경 (파란색으로 변경!) */
+.create-container {
+  background-color: #AAC4F5; /* 👈 전체 배경 파란색 */
+  min-height: 100vh;
+  
+  /* 👇 파란색 배경이 보이도록 안쪽으로 여백을 줌 */
+  padding: 60px; 
+  
+  display: flex;
+  justify-content: center; /* 박스들을 가운데 정렬 */
+  align-items: flex-start; /* 위쪽 라인 맞춤 */
+  gap: 40px; /* 👈 왼쪽 박스와 오른쪽 박스 사이의 파란색 틈 */
+  
+  font-family: 'Bungee Hairline', sans-serif;
+  box-sizing: border-box;
+}
+
+/* 2. 왼쪽: 입력 폼 섹션 (독립된 크림색 카드) */
+.left-section {
+  background-color: #FFF8DE; /* 👈 크림색 배경 */
+  border-radius: 40px;       /* 👈 둥글둥글하게 */
+  padding: 50px;             /* 내용물 여백 */
+  
+  flex: 0 1 800px; /* 너비: 최대 800px까지 늘어남 */
+  width: 100%;     /* 모바일 대응 */
+  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  /* 살짝 떠 있는 느낌 (선택사항) */
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+}
+
+/* 3. 오른쪽: 히스토리 섹션 (독립된 크림색 카드) */
+.right-section {
+  background-color: #FFF8DE; /* 👈 크림색 배경 */
+  border-radius: 40px;       /* 👈 둥글둥글하게 */
+  padding: 40px;
+  
+  flex: 0 0 350px; /* 너비: 350px로 고정 */
+  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  /* 기존 구분선(border-left) 삭제 */
+  border-left: none;
+  
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+}
+
+/* 🏷️ 섹션 헤더 (노란색 알약) */
+.section-header {
+  background-color: #FFF2C6;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 20px;
+  width: fit-content;
+  
+  /* 헤더가 박스 밖으로 살짝 튀어나온 느낌을 원하면 마진 조절 가능 */
+  /* margin-top: -70px; */ 
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+}
+
+/* 💊 라벨 (RECEIPT TYPE, DATE... 모양) */
+.label-pill {
+  background: white;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 8px 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+
+/* 📝 입력창 (흰색 네모 박스) */
+.input-box {
+  background: white;
+  border: none;
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  font-family: inherit; /* 폰트 상속 */
+}
+
+/* 카테고리 버튼들 */
+.category-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cat-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-family: inherit;
+}
+
+.cat-btn.active {
+  background: #FFF2C6;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* 🚀 하단 CREATE 버튼 */
+.create-btn {
+  background-color: #AAC4F5;
+  border: none;
+  border-radius: 40px;
+  padding: 15px 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  width: fit-content;
+  
+  font-family: 'Bungee Inline', cursive; 
+  -webkit-text-stroke: 0 !important;
+  color: black;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+}
+
+.create-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+}
+
+/* + ADD ANOTHER ROOMIE 버튼 */
+.add-roomie-btn {
+  background: white;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: -5px;
+  margin-bottom: 20px;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.home-btn {
+  position: absolute; /* 화면 왼쪽 위에 고정 */
+  top: 30px;
+  left: 30px;
+  
+  background: white;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+  z-index: 100; /* 제일 위에 보이게 */
+}
+.home-btn:hover {
+  background: #FFF2C6; /* 마우스 올리면 노란색 */
+}
+
+/* 👉 오른쪽 섹션 수정 (삐져나옴 해결) */
+.right-section {
+  background-color: #FFF8DE;
+  border-radius: 40px;
+  padding: 40px 30px; /* 좌우 패딩을 30px로 살짝 줄임 */
+  
+  flex: 0 0 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+  
+  /* 내용이 넘치지 않게 박스 크기 계산 방식 고정 */
+  box-sizing: border-box; 
+}
+
+/* 📜 히스토리 전용 버튼 (새로 추가!) */
+.history-pill {
+  background: white;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 15px 0; /* 위아래 여백만 주고 좌우는 꽉 차게 */
+  
+  width: 100%; /* 부모 박스 너비에 딱 맞게! */
+  
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center; /* 글씨 가운데 정렬 */
+  
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+  transition: transform 0.1s;
+}
+
+.history-pill:hover {
+  background-color: #FFF2C6; /* 마우스 올리면 노란색 */
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
