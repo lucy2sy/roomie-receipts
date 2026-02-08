@@ -1,16 +1,41 @@
-# React + Vite
+# 🧾 Roomie Receipts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **A stress-free bill-splitting tool for college roommates.** > "Money talk doesn't have to be awkward!"
 
-Currently, two official plugins are available:
+**Roomie Receipts** is a web application designed to help roommates or housemates split communal expenses (groceries, furniture, trips) easily and fairly. With a retro cartoon-style UI, it makes the boring task of settling bills fun and automated.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **🚀 No Login Required**: Just create a room and start splitting immediately. No sign-up hassle.
+- **🎨 Retro & Hip Design**: Unique UI featuring 'Bungee' fonts and cartoon-style elements.
+- **💸 Smart Splitting**:
+  - **Split Equally**: Automatically divides the total by the number of selected people.
+  - **Split Differently**: Assign specific amounts to each person. (Auto-fills remaining amount for 2 people!)
+- **📂 Local History**: Your created receipts are safely stored in your browser's local storage for privacy.
+- **💌 Gentle Reminders**: One-click to copy a friendly, non-awkward payment reminder message.
+- **📄 PDF Export**: Download your receipt as a receipt-styled PDF file.
+- **🔗 Easy Sharing**: Share the receipt link instantly with your roomies.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Vite
+- **Styling**: CSS (Custom Retro Design), Bungee Fonts
+- **Backend / Database**: Supabase
+- **Libraries**:
+  - `html2canvas`, `jspdf` (for PDF generation)
+  - `react-router-dom` (for navigation)
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run the project locally.
+
+### 1. Clone the repository
+```bash
+git clone [https://github.com/lucy2sy/roomie-receipts.git](https://github.com/lucy2sy/roomie-receipts.git)
+cd roomie-receipts
