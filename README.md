@@ -15,7 +15,6 @@
   - **Split Differently**: Assign specific amounts to each person. (Auto-fills remaining amount for 2 people!)
 - **📂 Local History**: Your created receipts are safely stored in your browser's local storage for privacy.
 - **💌 Gentle Reminders**: One-click to copy a friendly, non-awkward payment reminder message.
-- **📄 PDF Export**: Download your receipt as a receipt-styled PDF file.
 - **🔗 Easy Sharing**: Share the receipt link instantly with your roomies.
 
 ---
@@ -26,7 +25,6 @@
 - **Styling**: CSS (Custom Retro Design), Bungee Fonts
 - **Backend / Database**: Supabase
 - **Libraries**:
-  - `html2canvas`, `jspdf` (for PDF generation)
   - `react-router-dom` (for navigation)
 
 ---
