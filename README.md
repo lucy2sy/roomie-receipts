@@ -48,7 +48,7 @@
 | <img src="public/screenshot3.png" width="400" /> | <img src="public/screenshot4.png" width="400" /> |
 
 
-| Split & Detail |
+| Saved Histories |
 |:---:|
 | <img src="public/screenshot5.png" width="400" /> | 
 
