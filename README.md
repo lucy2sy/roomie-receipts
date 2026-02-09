@@ -47,4 +47,8 @@
 |:---:|:---:|
 | <img src="public/screenshot3.png" width="400" /> | <img src="public/screenshot4.png" width="400" /> |
 
-*(Make sure to add your actual screenshots to the `public` folder or update the paths!)*
+
+| Split & Detail |
+|:---:|
+| <img src="public/screenshot5.png" width="400" /> | 
+
