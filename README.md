@@ -10,7 +10,6 @@
 ## 🌐 Live Demo
 
 👉 **[Try Roomie Receipts Here!](https://roomie-receipts.pages.dev)**
-*(여기에 배포한 실제 링크를 넣어주세요!)*
 
 ---
 
