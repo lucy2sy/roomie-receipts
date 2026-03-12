@@ -21,7 +21,6 @@
   - **Split Equally**: Automatically divides the total by the number of selected people.
   - **Split Differently**: Assign specific amounts to each person. (Auto-fills remaining amount for 2 people!)
 - **📂 Local History**: Your created receipts are safely stored in your browser's local storage for privacy.
-- **💌 Gentle Reminders**: One-click to copy a friendly, non-awkward payment reminder message.
 - **🔗 Easy Sharing**: Share the receipt link instantly with your roomies.
 
 ---
