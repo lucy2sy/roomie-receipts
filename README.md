@@ -1,3 +1,22 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 🧾 Roomie Receipts
 
 > **A stress-free bill-splitting tool for college roommates.**
