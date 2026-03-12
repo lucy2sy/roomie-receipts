@@ -27,7 +27,7 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, Vite
+- **Frontend**: JavaScript, React, Vite
 - **Styling**: CSS (Custom Retro Design), Bungee Fonts
 - **Backend / Database**: Supabase
 - **Libraries**:
