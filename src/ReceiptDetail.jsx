@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from './supabaseClient'
 import './ReceiptDetail.css'
+import { toCents, formatCents, splitEqually, unassignedCents } from './splitMath'
 
 export default function ReceiptDetail() {
   const { id } = useParams()
@@ -15,6 +16,8 @@ export default function ReceiptDetail() {
   const [loading, setLoading] = useState(true)
   const [selectedIds, setSelectedIds] = useState([]) 
   const [manualAmounts, setManualAmounts] = useState({})
+  // Who covers leftover cents in an equal split (defaults to the first selected person)
+  const [remainderTo, setRemainderTo] = useState(null)
 
   // ✨ 저장 완료 여부 (화면 전환용)
   const [isSaved, setIsSaved] = useState(false)
@@ -24,22 +27,17 @@ export default function ReceiptDetail() {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const { data: receiptData, error: receiptError } = await supabase
-          .from('receipts')
-          .select('*')
-          .eq('id', id)
-          .single()
-        if (receiptError) throw receiptError
+        // Fetch ONE receipt by its ID (see supabase/v2_security.sql → get_receipt)
+        const { data, error } = await supabase.rpc('get_receipt', { p_id: id })
+        if (error) throw error
+        if (!data || !data.receipt) throw new Error('Receipt not found')
+
+        const receiptData = data.receipt
+        const participantsData = data.participants
         setReceipt(receiptData)
         // 기존에 저장된 총액이 있으면 불러오기
         if (receiptData.total_amount) setTotalAmount(receiptData.total_amount)
 
-        const { data: participantsData, error: participantsError } = await supabase
-          .from('participants')
-          .select('*')
-          .eq('receipt_id', id)
-        if (participantsError) throw participantsError
-        
         if (participantsData) {
           setParticipants(participantsData)
           setSelectedIds(participantsData.map(p => p.id)) 
@@ -78,23 +76,32 @@ export default function ReceiptDetail() {
     }
   }
 
-  const getSplitAmount = () => {
-    const total = parseFloat(totalAmount) || 0
-    const count = selectedIds.length
-    if (total === 0 || count === 0) return '0.00'
-    return (total / count).toFixed(2) // 문자열 반환
+  // 💰 All money math happens in integer cents (see splitMath.js)
+  const totalCents = toCents(totalAmount)
+  const equalSplit = splitEqually(totalCents, selectedIds, remainderTo)
+  const remainderReceiver = selectedIds.includes(remainderTo) ? remainderTo : selectedIds[0]
+  const leftToAssign = unassignedCents(totalCents, manualAmounts, selectedIds)
+
+  // Final amount (in cents) each person owes under the current split mode
+  const getAmountCents = (pid) => {
+    if (!selectedIds.includes(pid)) return 0
+    return splitType === 'EQUALLY' ? equalSplit.amounts[pid] : toCents(manualAmounts[pid])
   }
+
+  const canSave =
+    totalCents > 0 &&
+    selectedIds.length > 0 &&
+    (splitType === 'EQUALLY' || leftToAssign === 0)
 
   const handleManualChange = (id, value) => {
     let newAmounts = { ...manualAmounts, [id]: value }
-    const total = parseFloat(totalAmount) || 0
-    const val = parseFloat(value) || 0
 
-    if (selectedIds.length === 2 && total > 0) {
+    // With exactly 2 people, typing one amount auto-fills the other
+    if (selectedIds.length === 2 && totalCents > 0) {
       const otherId = selectedIds.find(pid => pid !== id)
       if (otherId) {
-        const remaining = total - val
-        newAmounts[otherId] = remaining > 0 ? parseFloat(remaining.toFixed(2)) : 0
+        const remaining = Math.max(totalCents - toCents(value), 0)
+        newAmounts[otherId] = formatCents(remaining)
       }
     }
     setManualAmounts(newAmounts)
@@ -102,33 +109,23 @@ export default function ReceiptDetail() {
 
   // 💾 SAVE FUNCTION (DB 업데이트)
   const handleSave = async () => {
-    if (!totalAmount || parseFloat(totalAmount) <= 0) return alert("PLEASE ENTER AMOUNT! 💸")
+    if (totalCents <= 0) return alert("PLEASE ENTER AMOUNT! 💸")
+    if (selectedIds.length === 0) return alert("PLEASE SELECT AT LEAST ONE PERSON! 👯")
+    if (splitType === 'DIFFERENTLY' && leftToAssign !== 0) {
+      return alert(`AMOUNTS MUST ADD UP TO $${formatCents(totalCents)}!`)
+    }
 
     try {
       setLoading(true)
 
-      // 1. 총액 업데이트 (Receipts)
-      await supabase
-        .from('receipts')
-        .update({ total_amount: totalAmount })
-        .eq('id', id)
-
-      // 2. 각자 낼 돈 계산 및 업데이트 (Participants)
-      const updates = participants.map(p => {
-        let amount = 0
-        if (selectedIds.includes(p.id)) {
-          if (splitType === 'EQUALLY') {
-            amount = parseFloat(getSplitAmount())
-          } else {
-            amount = parseFloat(manualAmounts[p.id]) || 0
-          }
-        }
-        
-        return supabase
-          .from('participants')
-          .update({ amount_owed: amount })
-          .eq('id', p.id)
+      // Save total + everyone's share in one secure call.
+      // The server double-checks the shares add up (see supabase/v2_security.sql → save_split)
+      const { error: saveError } = await supabase.rpc('save_split', {
+        p_id: id,
+        p_total: totalCents / 100,
+        p_amounts: participants.map(p => ({ id: p.id, amount: getAmountCents(p.id) / 100 }))
       })
+      if (saveError) throw saveError
 
       const saveToLocalHistory = (receiptData) => {
         const history = JSON.parse(localStorage.getItem('myReceipts') || '[]')
@@ -137,13 +134,12 @@ export default function ReceiptDetail() {
                 id: receiptData.id,
                 category: receiptData.category,
                 date: receiptData.receipt_date,
-                total: totalAmount
+                total: formatCents(totalCents)
             }
             localStorage.setItem('myReceipts', JSON.stringify([newEntry, ...history]))
         }
     }
 
-      await Promise.all(updates)
       saveToLocalHistory(receipt) // 👈 여기에 추가! (내 컴퓨터에 기록 남기기)
       setIsSaved(true) // 화면 전환!
       // alert("SAVED SUCCESSFULLY! 🎉") 
@@ -168,7 +164,7 @@ export default function ReceiptDetail() {
   const msg = `
 Hello Roomies! 🏡
 The receipt for ${receipt.category} is ready! 🧾
-Total: $${parseFloat(totalAmount).toFixed(2)}
+Total: $${formatCents(totalCents)}
 
 👇 Check who owes what here:
 ${url}
@@ -266,7 +262,7 @@ Let's settle up! 💸
                   <div className="row-right">
                     {splitType === 'EQUALLY' ? (
                       <span className="split-result">
-                        {selectedIds.includes(person.id) ? `= $${getSplitAmount()}` : '-'}
+                        {selectedIds.includes(person.id) ? `= $${formatCents(getAmountCents(person.id))}` : '-'}
                       </span>
                     ) : (
                       selectedIds.includes(person.id) && (
@@ -288,7 +284,36 @@ Let's settle up! 💸
               ))}
             </div>
 
-            <button className="action-btn" onClick={handleSave} disabled={loading}>
+            {/* 🪙 Equal split: show leftover cents and who covers them */}
+            {splitType === 'EQUALLY' && equalSplit.remainder > 0 && (
+              <div className="remainder-note" aria-live="polite">
+                <label htmlFor="remainder-to">
+                  {equalSplit.remainder}¢ LEFT OVER — WHO COVERS IT?
+                </label>
+                <select
+                  id="remainder-to"
+                  value={remainderReceiver}
+                  onChange={(e) => setRemainderTo(e.target.value)}
+                >
+                  {participants
+                    .filter(p => selectedIds.includes(p.id))
+                    .map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                </select>
+              </div>
+            )}
+
+            {/* ⚖️ Custom split: live counter until amounts match the total */}
+            {splitType === 'DIFFERENTLY' && totalCents > 0 && (
+              <p className="assign-status" aria-live="polite">
+                {leftToAssign === 0
+                  ? '✔ ALL ASSIGNED'
+                  : leftToAssign > 0
+                    ? `$${formatCents(leftToAssign)} LEFT TO ASSIGN`
+                    : `$${formatCents(-leftToAssign)} OVER THE TOTAL`}
+              </p>
+            )}
+
+            <button className="action-btn" onClick={handleSave} disabled={loading || !canSave}>
               {loading ? 'SAVING...' : 'SAVE & SPLIT! 💸'}
             </button>
           </>
@@ -298,21 +323,16 @@ Let's settle up! 💸
             <div className="success-icon">✨ SAVED! ✨</div>
             
             <div className="total-display">
-              TOTAL: ${parseFloat(totalAmount).toFixed(2)}
+              TOTAL: ${formatCents(totalCents)}
             </div>
 
             {/* 결과 리스트 */}
             <div className="result-list">
               {participants.map(p => {
-                // 저장된 값(또는 계산된 값) 보여주기
-                let amount = 0
-                if (selectedIds.includes(p.id)) {
-                  amount = splitType === 'EQUALLY' ? getSplitAmount() : (manualAmounts[p.id] || 0)
-                }
                 return (
                   <div key={p.id} className="result-row">
                     <span className="result-name">{p.name}</span>
-                    <span className="result-amount">${parseFloat(amount).toFixed(2)}</span>
+                    <span className="result-amount">${formatCents(getAmountCents(p.id))}</span>
                   </div>
                 )
               })}

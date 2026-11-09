@@ -335,3 +335,33 @@
   transform: translate(2px, 2px);
   box-shadow: none;
 }
+/* 🪙 Leftover cents (equal split) */
+.remainder-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  font-size: 0.95rem;
+}
+
+.remainder-note select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 6px 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background: white;
+}
+
+/* ⚖️ Custom split counter */
+.assign-status {
+  margin: 15px 0;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

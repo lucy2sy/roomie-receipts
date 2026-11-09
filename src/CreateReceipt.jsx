@@ -41,36 +41,19 @@ export default function CreateReceipt() {
     
     setLoading(true)
     try {
-      // 2. Create a receipt room (Insert into 'receipts' table)
-      const { data: receipt, error } = await supabase
-        .from('receipts')
-        .insert([{ 
-          title: formData.title || 'GROCERY RUN', 
-          category: formData.category,
-          receipt_date: formData.date
-        }])
-        .select()
-        .single()
+      // 2. Create the receipt + participants (me first, then roomies) in one secure call
+      //    (see supabase/v2_security.sql → create_receipt)
+      const { data: receiptId, error } = await supabase.rpc('create_receipt', {
+        p_title: formData.title || 'GROCERY RUN',
+        p_category: formData.category,
+        p_date: formData.date,
+        p_names: [formData.myName, ...validRoomies]
+      })
 
       if (error) throw error
 
-      // 3. Prepare participants data (My name + Roomies)
-      const participantsData = [
-        { receipt_id: receipt.id, name: formData.myName }, // Me
-        ...validRoomies.map(name => ({ receipt_id: receipt.id, name: name })) // Roomies
-      ]
-
-      // 4. Save participants (Insert into 'participants' table)
-      const { error: partError } = await supabase
-        .from('participants')
-        .insert(participantsData)
-
-      if (partError) throw partError
-
-      alert('SUCCESSFULLY CREATED! ID: ' + receipt.id)
-      
-      // Navigate to the detail/share page
-      navigate(`/share/${receipt.id}`)
+      // 3. Navigate to the detail/share page
+      navigate(`/share/${receiptId}`)
 
     } catch (error) {
       alert('ERROR: ' + error.message)
