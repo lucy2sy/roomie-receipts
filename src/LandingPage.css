@@ -219,7 +219,7 @@ body {
 .text-box { flex: 1; }
 .img-placeholder { flex: 1; height: 220px; background: #ddd; border-radius: 10px; }
 
-.text-box h1 {
+.text-box .step-title {
   font-family: 'Bungee Hairline', sans-serif; 
   font-weight: bold;
   color: #9370DB; /* 보라색 글씨 */
@@ -235,7 +235,7 @@ body {
   margin: 0 0 10px 0;
 }
 
-.text-box h2 {
+.text-box .step-desc {
   font-family: 'Bungee Hairline', sans-serif; 
   font-weight: bold;
   color: #9370DB;

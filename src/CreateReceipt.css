@@ -214,3 +214,42 @@
   transform: translate(2px, 2px);
   box-shadow: none;
 }
+/* ♿ v2 accessibility additions */
+
+/* Headings keep the pill look (h1/h2 instead of div for screen readers) */
+h1.section-header,
+h2.section-header {
+  margin-top: 0;
+}
+
+/* RECEIPT TYPE group: fieldset/legend without the browser's default box */
+.field-group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.field-group legend {
+  float: left;          /* lets the legend sit like the other labels */
+}
+.field-group legend + * {
+  clear: both;
+}
+
+/* Labels are now real <label>s: keep them on their own line */
+label.label-pill {
+  cursor: pointer;
+}
+
+/* Inline error message under a field */
+.field-error {
+  color: #B3261E;
+  font-weight: bold;
+  margin: -5px 0 15px;
+  -webkit-text-stroke: 0;
+}
+
+.input-box[aria-invalid="true"] {
+  outline: 3px solid #B3261E;
+  outline-offset: -3px;
+}

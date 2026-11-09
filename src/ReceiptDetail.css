@@ -174,7 +174,6 @@
   padding: 8px 5px;
   font-size: 1.1rem;
   text-align: right;
-  outline: none;
   font-family: inherit;
 }
 .clear-x-btn {
@@ -365,3 +364,34 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* ♿ v2 accessibility additions */
+.manual-input-wrapper:focus-within {
+  outline: 3px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+/* Real checkbox, visually hidden; the styled box shows its state and focus */
+.checkbox-wrapper input:focus-visible + .custom-checkbox {
+  outline: 3px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+.amount-section label,
+.receipt-card h2 {
+  display: block;
+}
+
+.form-error {
+  color: #B3261E;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  -webkit-text-stroke: 0;
+}
+
+.status-message {
+  min-height: 1.5em;
+  text-align: center;
+  margin: 0;
+}
+.success-icon { margin-top: 0; }

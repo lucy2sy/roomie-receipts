@@ -31,21 +31,23 @@ export default function History() {
     <div className="create-container">
       
       {/* 🏠 홈 버튼 */}
-      <button className="home-btn" onClick={() => navigate('/')}>
-        𖠿 HOME
+      <button type="button" className="home-btn" onClick={() => navigate('/')}>
+        <span aria-hidden="true">𖠿 </span>HOME
       </button>
 
       <div className="left-section" style={{ flex: 'none', maxWidth: '600px', margin: '0 auto' }}>
         
-        <div className="section-header">
-          {filter === 'ALL' ? 'MY RECEIPT HISTORY 📂' : `MY ${filter} HISTORY 📂`}
-        </div>
+        <h1 className="section-header">
+          {filter === 'ALL' ? 'MY RECEIPT HISTORY' : `MY ${filter} HISTORY`}
+        </h1>
 
         {/* 🏷️ 필터 탭 (여기서도 바꿀 수 있게!) */}
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+        <div role="group" aria-label="Filter by category" style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
           {['ALL', 'GROCERY', 'FURNITURE', 'TRIP'].map(cat => (
             <button
+              type="button"
               key={cat}
+              aria-pressed={filter === cat}
               onClick={() => setFilter(cat)}
               style={{
                 padding: '8px 15px',
@@ -71,12 +73,19 @@ export default function History() {
           </div>
         ) : (
           /* 📜 리스트 보여주기 */
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+ 
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '15px', listStyle: 'none', padding: 0, margin: 0 }}>
             {filteredList.map((item, index) => (
-              <div 
-                key={index} 
+              <li key={index}>
+              <button
+                type="button"
                 className="input-box" 
+                aria-label={`${item.category} receipt, ${item.date}, total $${item.total || '0.00'}. Open receipt`}
                 style={{ 
+                  width: '100%',
+                  textAlign: 'left',
+                  color: 'inherit',
+                  background: 'white',
                   display: 'flex', 
                   justifyContent: 'space-between', 
                   alignItems: 'center',
@@ -90,26 +99,30 @@ export default function History() {
                 onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
-                <div>
-                  <div style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-                    {item.category === 'GROCERY' && '🛒 '}
-                    {item.category === 'FURNITURE' && '🪑 '}
-                    {item.category === 'TRIP' && '✈️ '}
+                <span>
+                  <span style={{ display: 'block', fontWeight: 'bold', fontSize: '1.2rem' }}>
+                    <span aria-hidden="true">
+                      {item.category === 'GROCERY' && '🛒 '}
+                      {item.category === 'FURNITURE' && '🪑 '}
+                      {item.category === 'TRIP' && '✈️ '}
+                    </span>
                     {item.category}
-                  </div>
-                  <div style={{ fontSize: '0.9rem', color: '#666' }}>{item.date}</div>
-                </div>
-                <div style={{ fontWeight: 'bold', color: '#9370DB', fontSize: '1.2rem' }}>
-                  ${item.total || '0.00'} &gt;
-                </div>
-              </div>
+                  </span>
+                  <span style={{ display: 'block', fontSize: '0.9rem', color: '#666' }}>{item.date}</span>
+                </span>
+                <span style={{ fontWeight: 'bold', color: '#9370DB', fontSize: '1.2rem' }}>
+                  ${item.total || '0.00'} <span aria-hidden="true">&gt;</span>
+                </span>
+              </button>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
 
         {/* 🗑 전체 삭제 버튼 */}
         {myReceipts.length > 0 && (
           <button 
+            type="button"
             style={{ 
               marginTop: '30px', 
               background: 'transparent', 
