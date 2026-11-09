@@ -53,7 +53,7 @@ export default function History() {
                 padding: '8px 15px',
                 borderRadius: '20px',
                 border: '1px solid black',
-                background: filter === cat ? '#9370DB' : 'white',
+                background: filter === cat ? 'var(--purple)' : 'white',
                 color: filter === cat ? 'white' : 'black',
                 cursor: 'pointer',
                 fontWeight: 'bold',
@@ -110,7 +110,7 @@ export default function History() {
                   </span>
                   <span style={{ display: 'block', fontSize: '0.9rem', color: '#666' }}>{item.date}</span>
                 </span>
-                <span style={{ fontWeight: 'bold', color: '#9370DB', fontSize: '1.2rem' }}>
+                <span style={{ fontWeight: 'bold', color: 'var(--purple)', fontSize: '1.2rem' }}>
                   ${item.total || '0.00'} <span aria-hidden="true">&gt;</span>
                 </span>
               </button>
@@ -129,7 +129,7 @@ export default function History() {
               border: 'none', 
               textDecoration: 'underline', 
               cursor: 'pointer',
-              color: '#999',
+              color: 'var(--text-muted)',
               width: '100%'
             }}
             onClick={() => {

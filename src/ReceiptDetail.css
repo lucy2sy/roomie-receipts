@@ -7,7 +7,7 @@
   padding: 40px;
   display: flex;
   justify-content: center;
-  font-family: 'Bungee Hairline', sans-serif;
+  font-family: var(--font-body);
   box-sizing: border-box;
 }
 
@@ -31,7 +31,7 @@
 .receipt-title {
   font-family: 'Bungee Inline', cursive;
   font-size: 2.5rem;
-  color: #8ca9ff;
+  color: var(--blue-text);
   -webkit-text-stroke: 0 !important;
   margin: 0;
 }
@@ -57,7 +57,7 @@
   transform: scale(1.02);
 }
 .scan-text {
-  color: #8ca9ff;
+  color: var(--blue-text);
   font-weight: bold;
   font-size: 1.4rem;
 }
@@ -66,7 +66,7 @@
 .separator-text {
   text-align: center;
   font-weight: bold;
-  color: #999;
+  color: var(--text-muted);
   font-size: 0.9rem;
   margin-bottom: 5px;
 }
@@ -113,7 +113,7 @@
 }
 .tab-btn.active {
   background-color: #AAC4F5;
-  color: white;
+  color: var(--text);
   box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
 }
 
@@ -152,7 +152,7 @@
   font-size: 0.9rem;
   transition: all 0.2s;
 }
-.custom-checkbox.checked { background-color: #4A90E2; }
+.custom-checkbox.checked { background-color: var(--blue-strong); }
 .row-name { font-size: 1.2rem; font-weight: bold; }
 
 .row-right { display: flex; align-items: center; }
@@ -166,7 +166,7 @@
   border-radius: 5px;
   padding: 0 5px;
 }
-.currency-symbol { padding: 0 5px; color: #888; }
+.currency-symbol { padding: 0 5px; color: var(--text-muted); }
 .small-input {
   width: 60px;
   border: none;
@@ -179,7 +179,7 @@
 .clear-x-btn {
   background: #AAC4F5;
   border: none;
-  color: white;
+  color: var(--text);
   width: 20px;
   height: 20px;
   border-radius: 3px;
@@ -200,7 +200,7 @@
   font-size: 1.5rem;
   font-family: 'Bungee Inline', cursive;
   -webkit-text-stroke: 0 !important;
-  color: white;
+  color: var(--text);
   cursor: pointer;
   margin-top: 10px;
 }
@@ -221,7 +221,7 @@
 .success-icon {
   font-family: 'Bungee Inline', cursive;
   font-size: 2.5rem;
-  color: #4CAF50; /* 성공 초록색 */
+  color: var(--green); /* 성공 초록색 */
   -webkit-text-stroke: 0 !important;
   margin-bottom: 10px;
 }
@@ -256,7 +256,7 @@
   border-bottom: none;
 }
 .result-name { font-weight: bold; }
-.result-amount { color: #9370DB; font-weight: bold; }
+.result-amount { color: var(--purple); font-weight: bold; }
 
 /* 공유 버튼 */
 .share-section {
@@ -271,7 +271,7 @@
 }
 
 .copy-link-btn {
-  background: #4A90E2;
+  background: var(--blue-strong);
   color: white;
   border: none;
   border-radius: 30px;
@@ -305,13 +305,13 @@
   background: transparent;
   border: none;
   text-decoration: underline;
-  color: #888;
+  color: var(--text-muted);
   cursor: pointer;
   margin-top: -10px;
 }
 
 .copy-msg-btn {
-  background: #9370DB; /* 보라색 (친절한 느낌) */
+  background: var(--purple); /* 보라색 (친절한 느낌) */
   color: white;
   border: none;
   border-radius: 30px;
@@ -382,7 +382,7 @@
 }
 
 .form-error {
-  color: #B3261E;
+  color: var(--error);
   font-weight: bold;
   text-align: center;
   margin: 0;

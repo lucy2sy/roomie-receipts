@@ -35,7 +35,7 @@ export default function LandingPage() {
             <img src={starImg} className="star star-left" alt="" />
             <img src={paperImg} className="paper-img" alt="" />
             <div className="paper-text">
-              ROOMIE RECEIPTS IS A PERSONAL PROJECT BY LUCY LEE. IT IS A BILL-SPLITTING TOOL DESIGNED TO HELP COLLEGE ROOMMATES OR HOUSEMATES MANAGE HOUSEHOLD COSTS.
+              Roomie Receipts is a personal project by Lucy Lee: a bill-splitting tool that helps college roommates and housemates manage shared household costs.
             </div>
             <img src={starImg} className="star star-right" alt="" />
           </div>
@@ -58,7 +58,7 @@ export default function LandingPage() {
             <div className="info-block">
               <div className="text-box">
                 <h2 className="step-title">CREATE & ADD <span aria-hidden="true">🛒</span></h2>
-                <p className="step-desc">NO LOGIN REQUIRED. JUST CREATE A ROOM AND ADD YOUR EXPENSES. IT'S THAT SIMPLE!</p>
+                <p className="step-desc">No login required. Just create a receipt and add your roomies. It's that simple!</p>
               </div>
               <div className="img-placeholder">
                 <img
@@ -80,7 +80,7 @@ export default function LandingPage() {
               </div>
               <div className="text-box">
                 <h2 className="step-title">SPLIT YOUR WAY <span aria-hidden="true">⚡️</span></h2>
-                <p className="step-desc">SELECT WHO ATE WHAT. SPLIT EQUALLY OR BY EXACT AMOUNTS. "I DIDN'T EAT THAT PIZZA!" → NO PROBLEM.</p>
+                <p className="step-desc">Select who ate what. Split equally or by exact amounts. "I didn't eat that pizza!" No problem.</p>
               </div>
             </div>
 
@@ -88,7 +88,7 @@ export default function LandingPage() {
             <div className="info-block">
               <div className="text-box">
                 <h2 className="step-title">SETTLE UP <span aria-hidden="true">💸</span></h2>
-                <p className="step-desc">SEE EXACTLY WHO OWES WHO. WE DO THE MATH, YOU JUST PAY BACK AND ENJOY YOUR LIFE.</p>
+                <p className="step-desc">See exactly who owes what. We do the math, down to the last cent. You just pay back and enjoy your life.</p>
               </div>
               <div className="img-placeholder">
                  <img

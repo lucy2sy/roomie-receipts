@@ -13,7 +13,7 @@
   align-items: flex-start; /* 위쪽 라인 맞춤 */
   gap: 40px; /* 👈 왼쪽 박스와 오른쪽 박스 사이의 파란색 틈 */
   
-  font-family: 'Bungee Hairline', sans-serif;
+  font-family: var(--font-body);
   box-sizing: border-box;
 }
 
@@ -55,6 +55,8 @@
 /* 🏷️ 섹션 헤더 (노란색 알약) */
 .section-header {
   background-color: #FFF2C6;
+  font-family: var(--font-display);
+  font-weight: 400;
   border: 1px solid black;
   border-radius: 50px;
   padding: 12px 30px;
@@ -243,7 +245,7 @@ label.label-pill {
 
 /* Inline error message under a field */
 .field-error {
-  color: #B3261E;
+  color: var(--error);
   font-weight: bold;
   margin: -5px 0 15px;
   -webkit-text-stroke: 0;
