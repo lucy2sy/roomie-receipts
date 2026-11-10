@@ -251,11 +251,25 @@ body {
 @media (max-width: 768px) {
   .house-roof { height: 100px; }
   .logo-img { width: 70%; margin-top: -80px; }
-  .paper-wrapper { height: 350px; }
-  .paper-text { font-size: 0.9rem; line-height: 1.6; }
+  /* v2: smaller, left-aligned text so it stays on the paper (justify left big gaps) */
+  .paper-wrapper { height: 260px; }
+  .paper-text {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    text-align: left;
+    width: 60%;
+    padding-top: 0;
+  }
+  /* v2: keep the white roof dot clear of the logo */
+  .roof-window { top: 14px; width: 30px; height: 30px; }
+  .logo-img { margin-top: -40px; }
+  .text-box .step-title { font-size: 1.4rem; }
+  .text-box .step-desc { font-size: 1.05rem; font-weight: 500; }
   .star-left { left: -5%; }
   .star-right { right: -5%; }
   .info-block { flex-direction: column !important; text-align: center; }
+  /* v2: step 2 has its image first in the code, so flip it back: text above its own image */
+  .info-block.reverse { flex-direction: column-reverse !important; }
   .how-to-btn { font-size: 1.5rem; padding: 10px 30px; }
   .start-btn { font-size: 2rem; padding: 15px 50px; }
 }

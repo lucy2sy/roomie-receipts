@@ -80,7 +80,7 @@ export default function LandingPage() {
               </div>
               <div className="text-box">
                 <h2 className="step-title">SPLIT YOUR WAY <span aria-hidden="true">⚡️</span></h2>
-                <p className="step-desc">Select who ate what. Split equally or by exact amounts. "I didn't eat that pizza!" No problem.</p>
+                <p className="step-desc">Select who ate what. Split equally or by exact amounts. “I didn’t eat that pizza!” No problem.</p>
               </div>
             </div>
 
