@@ -28,7 +28,7 @@ export default function History() {
     : myReceipts.filter(r => r.category === filter)
 
   return (
-    <div className="create-container">
+    <main className="create-container">
       
       {/* 🏠 홈 버튼 */}
       <button type="button" className="home-btn" onClick={() => navigate('/')}>
@@ -144,6 +144,6 @@ export default function History() {
         )}
         
       </div>
-    </div>
+    </main>
   )
 }

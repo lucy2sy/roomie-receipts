@@ -11,7 +11,7 @@ export default function LandingPage() {
   const navigate = useNavigate()
 
   return (
-    <div className="main-wrapper">
+    <main className="main-wrapper">
       
       {/* 🏠 집 전체 컨테이너 */}
       <div className="house-container">
@@ -58,12 +58,12 @@ export default function LandingPage() {
             <div className="info-block">
               <div className="text-box">
                 <h2 className="step-title">CREATE & ADD <span aria-hidden="true">🛒</span></h2>
-                <p className="step-desc">No login required. Just create a receipt and add your roomies. It's that simple!</p>
+                <p className="step-desc">No login, no app to download. Pick the date, add your roomies, and you’re ready to split.</p>
               </div>
               <div className="img-placeholder">
                 <img
                 src={step1Img} 
-                alt="Create receipt screen: pick a type, date and roommates"
+                alt="Create receipt screen with receipt type, date picker and roomie names"
                 style={{ width: '100%', borderRadius: '15px', border: '2px solid black', boxShadow: '5px 5px 0 rgba(0,0,0,0.1)' }}
                 />
               </div>
@@ -74,13 +74,13 @@ export default function LandingPage() {
               <div className="img-placeholder">
                 <img
                 src={step2Img} 
-                alt="Split screen: choose who to include and split equally or by exact amounts"
+                alt="Split screen showing the total, split options and each roomie’s share"
                 style={{ width: '100%', borderRadius: '15px', border: '2px solid black', boxShadow: '5px 5px 0 rgba(0,0,0,0.1)' }}
                 />
               </div>
               <div className="text-box">
                 <h2 className="step-title">SPLIT YOUR WAY <span aria-hidden="true">⚡️</span></h2>
-                <p className="step-desc">Select who ate what. Split equally or by exact amounts. “I didn’t eat that pizza!” No problem.</p>
+                <p className="step-desc">Split equally or by exact amounts. “I didn’t eat that pizza!” No problem. We’ll tell you when it all adds up.</p>
               </div>
             </div>
 
@@ -88,12 +88,12 @@ export default function LandingPage() {
             <div className="info-block">
               <div className="text-box">
                 <h2 className="step-title">SETTLE UP <span aria-hidden="true">💸</span></h2>
-                <p className="step-desc">See exactly who owes what. We do the math, down to the last cent. You just pay back and enjoy your life.</p>
+                <p className="step-desc">Every cent adds up, even $10 split three ways. Share one link or a friendly reminder, then get paid back.</p>
               </div>
               <div className="img-placeholder">
                  <img
                 src={step3Img} 
-                alt="Result screen: each roommate's share with buttons to copy a share link"
+                alt="Saved receipt showing who owes what, with buttons to copy a link or reminder"
                 style={{ width: '100%', borderRadius: '15px', border: '2px solid black', boxShadow: '5px 5px 0 rgba(0,0,0,0.1)' }}
                 />
               </div>
@@ -113,6 +113,6 @@ export default function LandingPage() {
         {/* house-body 끝 */}
 
       </div>
-    </div>
+    </main>
   )
 }

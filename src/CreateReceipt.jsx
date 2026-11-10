@@ -101,7 +101,7 @@ export default function CreateReceipt() {
   }
 
   return (
-    <div className="create-container">
+    <main className="create-container">
 
       {/* 🏠 Home Button */}
       <button type="button" className="home-btn" onClick={() => navigate('/')}>
@@ -226,6 +226,6 @@ export default function CreateReceipt() {
         </button>
       </nav>
 
-    </div>
+    </main>
   )
 }

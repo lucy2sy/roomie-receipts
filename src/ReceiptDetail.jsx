@@ -185,7 +185,7 @@ Let's settle up! 💸
 }
 
   return (
-    <div className="detail-container">
+    <main className="detail-container">
       
       {/* 🔙 BACK Button */}
       <button 
@@ -388,6 +388,12 @@ Let's settle up! 💸
                 <span aria-hidden="true">💌 </span>COPY FRIENDLY MSG
               </button>
 
+              {/* 🔒 Plain-language privacy note: the link is the key */}
+              <p className="privacy-note">
+                <span aria-hidden="true">🔒 </span>
+                Anyone with this link can view and edit this receipt, so only share it with your roomies.
+              </p>
+
               {/* Announced to screen readers when a copy succeeds */}
               <p className="status-message" aria-live="polite">{statusMsg}</p>
             </div>
@@ -405,6 +411,6 @@ Let's settle up! 💸
         )}
 
       </div>
-    </div>
+    </main>
   )
 }
