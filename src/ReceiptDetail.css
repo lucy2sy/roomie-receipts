@@ -459,3 +459,13 @@
     min-height: 44px;
   }
 }
+
+/* 🔒 Who can see this receipt (share screen) */
+.privacy-note {
+  font-size: 0.9rem;
+  font-weight: 500 !important;
+  color: var(--text-muted) !important;
+  margin: 12px auto 0 !important;
+  max-width: 34ch;
+  line-height: 1.4;
+}
